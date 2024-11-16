@@ -6,6 +6,7 @@ import 'package:wisata_candi_nicowijaya/screen/lib/screens/search_screen.dart';
 import 'package:wisata_candi_nicowijaya/screen/lib/screens/sign_in_screen.dart';
 import 'package:wisata_candi_nicowijaya/screen/lib/screens/sign_up_screen.dart';
 import 'package:wisata_candi_nicowijaya/screen/lib/screens/home_screen.dart';
+import 'package:wisata_candi_nicowijaya/screen/lib/screens/Favorite_screen.dart';
 
 
 void main() {
@@ -40,7 +41,61 @@ class MyApp extends StatelessWidget {
       // home: SignInScreen(),
       // home: SignUpScreen(),
       // home: SearchScreen(),
-      home: HomeScreen(),
+      //home: HomeScreen(),
+    );
+  }
+}
+
+class mainScreen extends StatefulWidget {
+  const mainScreen({super.key});
+
+  @override
+  State<mainScreen> createState() => _mainScreenState();
+}
+class _mainScreenState extends State<mainScreen> {
+  // TODO: 1.Deklarasi Variabel
+       int _currentIndex = 0;
+       final List<Widget> _children = [
+         HomeScreen(),
+         SearchScreen(),
+         FavoriteScreen(),
+         ProfileScreen(),
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // TODO: 2.  Buat Properti baru berupa widget yang ditampilkan
+      body: _children[_currentIndex],
+      // TODO: 3.  Buat Properti botttomNavigationBar dengan Nilai Theme
+      bottomNavigationBar: Theme(
+        // TODO: 4.  Buat data dan child dari theme
+        data: Theme.of(context).copyWith(
+          canvasColor: Colors.deepPurple[50],
+        ),
+        child: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          onTap: (index){
+            setState(() {
+              _currentIndex = index;
+            });
+          },
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.home, color: Colors.deepPurple,),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.search, color: Colors.deepPurple,),
+            label: 'search',
+
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.favorite, color: Colors.deepPurple,),
+              label: 'favorite',
+            )
+          ],
+        ),
+      ),
     );
   }
 }
