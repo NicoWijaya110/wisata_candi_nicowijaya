@@ -79,7 +79,7 @@ class _mainScreenState extends State<mainScreen> {
               _currentIndex = index;
             });
           },
-          items: [
+          items: const [
             BottomNavigationBarItem(
                 icon: Icon(Icons.home, color: Colors.deepPurple,),
               label: 'Home',
@@ -94,6 +94,9 @@ class _mainScreenState extends State<mainScreen> {
               label: 'favorite',
             )
           ],
+          selectedItemColor: Colors.deepPurple,
+          unselectedItemColor: Colors.deepPurple[100],
+          showUnselectedLabels: true,
         ),
       ),
     );
