@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wisata_candi_nicowijaya/screen/lib/screens/detail_screen.dart';
 import '../models/candi.dart';
 
 class ItemCard extends StatelessWidget {
@@ -9,7 +10,18 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    // TODO: 6. Implementasi routing ke DetailScreen
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => DetailScreen(candi: candi),
+            ));
+      }
+
+    );
+    Card(
       // TODO: 2. Tetapkan parameter shape, margin, dan elevation dari Cari
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       margin: EdgeInsets.all(4),
@@ -39,5 +51,6 @@ class ItemCard extends StatelessWidget {
         ],
       ),
     );
+
   }
 }
