@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:wisata_candi_nicowijaya/screen/lib/screens/sign_in_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -17,9 +17,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   // TODO 5. Implementasi fungsi signIn
   void signIn(){
-    setState(() {
-      isSignedIn = !isSignedIn;
-    });
+    // // setState(() {
+    //   isSignedIn = !isSignedIn;
+    // });
+    Navigator.pushNamed(context, '/signin');
   }
   // TODO 6. Implementasi fungsi signOut
   void signOut(){
@@ -150,8 +151,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 SizedBox(height: 4),
                 Divider(color: Colors.deepPurple[100]),
                 SizedBox(height: 20),
-                isSignedIn ? TextButton(onPressed: signOut, child: Text('Sign Out'))
-                    : TextButton(onPressed: signIn, child: Text('Sign In')),
+
+                if (isSignedIn)
+                  TextButton(
+                    onPressed: signOut, // Fungsi sign-out
+                    child: Text('Sign Out'),
+                  )
+                else
+                  TextButton(
+                    onPressed: () async {
+                      bool signin = await Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignInscreen()),
+                      );
+                      if (signin) {
+                        setState(() {
+                          isSignedIn = true;
+                        });
+                      }
+                    },
+                    child: Text('Sign In'),
+                  ),
               ],
             ),
           )
