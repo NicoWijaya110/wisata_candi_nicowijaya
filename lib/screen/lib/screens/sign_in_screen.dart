@@ -53,7 +53,7 @@ class _SignInscreenState extends State<SignInscreen> {
 
       if (username.isNotEmpty && password.isNotEmpty) {
         final SharedPreferences prefs = await prefsFuture;
-        final data = await _retrieveAndDecryptDataFromPrefs(prefs);
+        final data = await _retrieveAndDecryptDataFromPrefs(prefs as Future<SharedPreferences>);
         if (data.isNotEmpty) {
           final decryptedUsername = data['username'];
           final decryptedPassword = data['password'];
@@ -127,7 +127,7 @@ class _SignInscreenState extends State<SignInscreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       //TODO: 2. Pasang Appbar
-      appBar: AppBar(title: Text('Sign In'),),
+      appBar: AppBar(title: const Text('Sign In'),),
       //TODO: 3. Pasang body
       body: Center(
         child: SingleChildScrollView(
@@ -142,19 +142,19 @@ class _SignInscreenState extends State<SignInscreen> {
                   //TODO: 5. Pasang TextFormField Nama Pengguna
                   TextFormField(
                     controller: _usernameController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: "Nama Pengguna",
                       border: OutlineInputBorder(),
                     ),
                   ),
                   //TODO: 6. Pasang TextFormField Kata Sandi
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   TextFormField(
                     controller: _passwordController,
                     decoration: InputDecoration(
                       labelText: "Kata Sandi",
                       errorText: _errorText.isNotEmpty ? _errorText : null,
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                       suffixIcon: IconButton(
                         onPressed: (){
                           setState(() {
@@ -169,23 +169,23 @@ class _SignInscreenState extends State<SignInscreen> {
                     obscureText: _obscurePassword,
                   ),
                   //TODO: 7. Pasang TextFormField Sign In
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   ElevatedButton(
                       onPressed: (){},
-                      child: Text('Sign In')),
+                      child: const Text('Sign In')),
                   //TODO: 8. Pasang TextButton Sign Up
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   // TextButton(
                   //     onPressed: (){},
                   //     child: Text('Belum punya akun? Daftar di sini.')),
                   RichText(
                     text: TextSpan(
                       text: 'Belum punya akun? ',
-                      style: TextStyle(fontSize: 16, color:  Colors.deepPurple),
+                      style: const TextStyle(fontSize: 16, color:  Colors.deepPurple),
                       children: <TextSpan>[
                         TextSpan(
                           text: 'Daftar di sini. ',
-                          style: TextStyle(
+                          style: const TextStyle(
                               color:  Colors.blue,  //warna untuk teks yang bisa ditekan
                               decoration: TextDecoration.underline,
                               fontSize: 16
